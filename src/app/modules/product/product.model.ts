@@ -20,6 +20,7 @@ const variantsSchema = new Schema<TVariants>({
 const inventorySchema = new Schema<TInventory>({
     quantity: {
         type: Number,
+        minLength: [0, 'Min quantity is 0. But got {VALUE}'],
         required: [true, 'Quantity is required'],
     },
     inStock: {
