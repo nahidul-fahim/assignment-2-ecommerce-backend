@@ -30,11 +30,11 @@ const createProduct = async (req: Request, res: Response) => {
     }
 };
 
+
 // get all product controller
 const getAllProducts = async (req: Request, res: Response) => {
     try {
         const result = await ProductServices.getAllProductsFromDb();
-
         // send the response to client side
         res.status(200).json({
             success: true,
@@ -52,7 +52,30 @@ const getAllProducts = async (req: Request, res: Response) => {
 }
 
 
+// get a single product controller
+const getSingleProduct = async (req: Request, res: Response) => {
+    try {
+        const { productId } = req.params;
+        console.log(productId);
+        const result = await ProductServices.getSingleProductFromDb(productId);
+        // send the response to client side
+        res.status(200).json({
+            success: true,
+            message: "Products fetched successfully!",
+            data: result,
+        })
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message || "Something went wrong",
+            error: error,
+        });
+    }
+}
+
+
 export const ProductControllers = {
     createProduct,
     getAllProducts,
+    getSingleProduct,
 }
