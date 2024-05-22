@@ -68,5 +68,7 @@ const productSchema = new Schema<TProduct>({
     },
 });
 
+// creating a text for search
+productSchema.index({ name: 'text', description: 'text', category: 'text' });
 
 export const Product = model<TProduct>('Product', productSchema);
