@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import cors from "cors"
 import { ProductRoutes } from './app/modules/product/product.router';
+import { OrderRoutes } from './app/modules/order/order.router';
 const app: Application = express()
 
 // parser
@@ -9,6 +10,7 @@ app.use(cors())
 
 // application routers
 app.use("/api/products", ProductRoutes)
+app.use("/api/orders", OrderRoutes)
 
 
 // test route to check if server is running

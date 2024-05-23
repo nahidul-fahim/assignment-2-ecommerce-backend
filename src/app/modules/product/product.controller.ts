@@ -6,7 +6,7 @@ import productValidationSchema from "./product.validation";
 // create new product controller
 const createProduct = async (req: Request, res: Response) => {
     try {
-        const { product: productData } = req.body;
+        const productData = req.body;
 
         // zod validation
         const zodParseData = productValidationSchema.parse(productData)
@@ -85,7 +85,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
 const updateProductById = async (req: Request, res: Response) => {
     try {
         const { productId } = req.params;
-        const { product: productData } = req.body;
+        const productData = req.body;
         // zod validation
         // const zodParseData = productValidationSchema.parse(productData)
         // send the data to service
