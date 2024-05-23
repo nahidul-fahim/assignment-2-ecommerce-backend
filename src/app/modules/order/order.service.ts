@@ -4,10 +4,13 @@ import { Order } from "./order.model";
 
 // add new order to database and update quantity
 const addNewOrderToDb = async (order: TOrder) => {
-    console.log("Showing from service:", order);
     // getting single product for the order
     const getSingleProductFromDb = await ProductServices.getSingleProductFromDb(String(order?.productId))
-    console.log(getSingleProductFromDb);
+
+    // if ordered product is not found send the not found error
+    if (!getSingleProductFromDb) {
+        throw new Error("Order not found")
+    }
 
     const availableQuantity: number = <number>getSingleProductFromDb?.inventory?.quantity;
 
