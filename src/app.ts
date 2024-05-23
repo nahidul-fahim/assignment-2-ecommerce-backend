@@ -12,6 +12,11 @@ app.use(cors())
 app.use("/api/products", ProductRoutes)
 app.use("/api/orders", OrderRoutes)
 
+// test route to check if server is running
+app.get('/', (req: Request, res: Response) => {
+    res.send('Hello World! Have a good day.')
+})
+
 
 // Middleware to catch 404 errors (Route not found)
 app.use((req: Request, res: Response, next) => {
@@ -19,11 +24,5 @@ app.use((req: Request, res: Response, next) => {
         error: 'Route not found'
     });
 });
-
-
-// test route to check if server is running
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World! From assignment 2 eCommerce backend.')
-})
 
 export default app;
