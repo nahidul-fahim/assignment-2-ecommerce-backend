@@ -2,7 +2,7 @@ import { ProductServices } from "../product/product.service";
 import { TOrder } from "./order.interface";
 import { Order } from "./order.model";
 
-
+// add new order to database and update quantity
 const addNewOrderToDb = async (order: TOrder) => {
     console.log("Showing from service:", order);
     // getting single product for the order
@@ -42,9 +42,24 @@ const addNewOrderToDb = async (order: TOrder) => {
     }
 };
 
+// get all the orders from db
+const getAllOrdersFromDb = async () => {
+    const result = await Order.find();
+    return result;
+}
+
+
+// get orders by email from db
+const getAllOrdersByEmailFromDb = async (email: string) => {
+    const result = await Order.find({ email });
+    return result;
+}
+
 
 
 
 export const OrderServices = {
     addNewOrderToDb,
+    getAllOrdersFromDb,
+    getAllOrdersByEmailFromDb,
 }
